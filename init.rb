@@ -1,5 +1,9 @@
 require 'redmine'
 
+ActionDispatch::Callbacks.to_prepare do
+  require 'redmine_sidekiq'
+end
+
 Redmine::Plugin.register :redmine_sidekiq do
   name        'Sidekiq for Redmine'
   description 'Background jobs for Redmine'
