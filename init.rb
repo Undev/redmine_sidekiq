@@ -1,8 +1,5 @@
 require 'redmine'
-
-ActionDispatch::Callbacks.to_prepare do
-  require 'redmine_sidekiq'
-end
+require 'redmine_sidekiq'
 
 Redmine::Plugin.register :redmine_sidekiq do
   name        'Sidekiq for Redmine'
