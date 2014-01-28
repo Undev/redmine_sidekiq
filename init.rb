@@ -20,4 +20,6 @@ Redmine::Plugin.register :redmine_sidekiq do
   url         'https://github.com/Undev/redmine_sidekiq'
 
   requires_redmine :version_or_higher => '2.1'
+
+  menu :top_menu, :sidekiq, '/sidekiq', :if => Proc.new { User.current.admin? }
 end
