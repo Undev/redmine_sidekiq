@@ -1,5 +1,16 @@
 require 'redmine'
-require 'redmine_sidekiq'
+
+Sidekiq.configure_server do |config|
+  config.redis = { :namespace => 'redmine_sidekiq' }
+end
+
+Sidekiq.configure_client do |config|
+  config.redis = { :namespace => 'redmine_sidekiq' }
+end
+
+ActionDispatch::Callbacks.to_prepare do
+  require 'redmine_sidekiq'
+end
 
 Redmine::Plugin.register :redmine_sidekiq do
   name        'Sidekiq for Redmine'
